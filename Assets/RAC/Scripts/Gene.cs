@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +10,8 @@ public class Gene
     [XmlIgnore]
     public DNAController Controller { get; set; }
     public string Name { get; set; }
-    private float _value = 1;
 
+    private float _value = 1;
     public float Value
     {
         get { return _value; }

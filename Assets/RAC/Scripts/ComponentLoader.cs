@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class ComponentLoader : MonoBehaviour {
@@ -100,10 +100,4 @@ public class ComponentLoader : MonoBehaviour {
 
         return null;
     }
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 }
