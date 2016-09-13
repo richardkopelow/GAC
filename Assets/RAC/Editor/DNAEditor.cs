@@ -10,7 +10,8 @@ public class DNAEditor : EditorWindow
 {
     public List<Gene> Genes = new List<Gene>();
 
-    private List<AnimBool> animBools = new List<AnimBool>();
+    private List<AnimBool> geneBools = new List<AnimBool>();
+    private List<AnimBool> bonesBools = new List<AnimBool>();
     private Vector2 scrollPos;
     private string filePath = "";
 
@@ -35,6 +36,13 @@ public class DNAEditor : EditorWindow
                     XmlSerializer xmls = new XmlSerializer(typeof(List<Gene>));
                     Genes = (List<Gene>)xmls.Deserialize(sr);
                 }
+                geneBools = new List<AnimBool>(Genes.Count);
+                bonesBools = new List<AnimBool>(Genes.Count);
+                for (int i = 0; i < Genes.Count; i++)
+                {
+                    geneBools.Add(new AnimBool(false));
+                    bonesBools.Add(new AnimBool(false));
+                }
             }
         }
 
@@ -55,51 +63,62 @@ public class DNAEditor : EditorWindow
         GUILayout.Label("Genes", EditorStyles.boldLabel);
         for (int i = 0; i < Genes.Count; i++)
         {
-            animBools[i].target = EditorGUILayout.Foldout(animBools[i].target, Genes[i].Name);
+            EditorGUILayout.BeginHorizontal();
+            geneBools[i].target = EditorGUILayout.Foldout(geneBools[i].target, Genes[i].Name);
+            if (GUILayout.Button("Remove Gene"))
+            {
+                Genes.RemoveAt(i);
+                geneBools.RemoveAt(i);
+                bonesBools.RemoveAt(i);
+                i--;
+            }
+            EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel++;
 
-            if (EditorGUILayout.BeginFadeGroup(animBools[i].faded))
+            if (EditorGUILayout.BeginFadeGroup(geneBools[i].faded))
             {
                 Genes[i].Name = EditorGUILayout.TextField("Name", Genes[i].Name);
                 Genes[i].Value = EditorGUILayout.FloatField("Value", Genes[i].Value);
-                EditorGUILayout.PrefixLabel("Bones", EditorStyles.boldLabel);
+                bonesBools[i].target = EditorGUILayout.Foldout(bonesBools[i].target, "Bones");
                 EditorGUI.indentLevel++;
-                for (int j = 0; j < Genes[i].Bones.Count; j++)
+                if (EditorGUILayout.BeginFadeGroup(bonesBools[i].faded))
                 {
-                    BoneAxisPair pair = Genes[i].Bones[j];
-                    GUILayout.BeginHorizontal();
-                    pair.Name = EditorGUILayout.TextField("Bone Name", pair.Name);
-                    if (GUILayout.Button("Remove Bone"))
+                    for (int j = 0; j < Genes[i].Bones.Count; j++)
                     {
-                        Genes[i].Bones.RemoveAt(j);
-                        j--;
+                        BoneAxisPair pair = Genes[i].Bones[j];
+                        GUILayout.BeginHorizontal();
+                        pair.Name = EditorGUILayout.TextField("Bone Name", pair.Name);
+                        if (GUILayout.Button("Remove Bone"))
+                        {
+                            Genes[i].Bones.RemoveAt(j);
+                            j--;
+                        }
+                        GUILayout.EndHorizontal();
+                        pair.Mask = EditorGUILayout.Vector3Field("Scale Mask", pair.Mask);
+                        EditorGUILayout.Space();
                     }
-                    GUILayout.EndHorizontal();
-                    pair.Mask = EditorGUILayout.Vector3Field("Scale Mask", pair.Mask);
-                    
-                    EditorGUILayout.Space();
+                    if (GUILayout.Button("Add Bone"))
+                    {
+                        Genes[i].Bones.Add(new BoneAxisPair());
+                    }
                 }
-                GUILayout.BeginHorizontal();
-                if (GUILayout.Button("Add Bone"))
-                {
-                    Genes[i].Bones.Add(new BoneAxisPair());
-                }
-                if (GUILayout.Button("Remove Gene"))
-                {
-                    Genes.RemoveAt(i);
-                    i--;
-                }
-                GUILayout.EndHorizontal();
+                EditorGUILayout.EndFadeGroup();
+                EditorGUI.indentLevel--;
             }
-            EditorGUILayout.EndFadeGroup();
             EditorGUI.indentLevel--;
+            EditorGUILayout.EndFadeGroup();
+            
         }
 
         if (GUILayout.Button("Add Gene"))
         {
-            Genes.Add(new Gene());
-            animBools.Add(new AnimBool(true));
-            animBools[animBools.Count - 1].valueChanged.AddListener(Repaint);
+            Genes.Add(new Gene("(New Gene)"));
+            AnimBool geneBool = new AnimBool(true);
+            geneBools.Add(geneBool);
+            geneBool.valueChanged.AddListener(Repaint);
+            AnimBool boneBool = new AnimBool(false);
+            bonesBools.Add(boneBool);
+            boneBool.valueChanged.AddListener(Repaint);
         }
         EditorGUILayout.EndScrollView();
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class ComponentLoader : MonoBehaviour {
-
+    public string ArmatureName = "Armature";
     public List<GameObject> Parts;
     List<GameObject> generatedChildren;
 	// Use this for initialization
@@ -83,7 +83,7 @@ public class ComponentLoader : MonoBehaviour {
     {
         Transform goTrans = go.transform;
         goTrans.parent = trans;
-        Destroy(goTrans.Find("Armature").gameObject);
+        Destroy(goTrans.Find(ArmatureName).gameObject);
         SkinnedMeshRenderer[] renderers = go.GetComponentsInChildren<SkinnedMeshRenderer>();
 
         foreach (SkinnedMeshRenderer ren in renderers)
