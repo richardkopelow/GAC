@@ -10,8 +10,7 @@ public class DNAController : MonoBehaviour {
     public List<Gene> Genes;
     public string Path;
     public bool Resource;
-
-    // Use this for initialization
+    
     void Start()
     {
         trans = transform;
@@ -35,12 +34,14 @@ public class DNAController : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
 	void LateUpdate ()
 	{
         Bones.Update();
 	}
-
+    /// <summary>
+    /// Saves the DNA for this character to disk.
+    /// </summary>
+    /// <param name="path">The file path for the DNA file</param>
     public void SaveDNA(string path)
     {
         FileInfo fi = new FileInfo(path);
@@ -54,6 +55,11 @@ public class DNAController : MonoBehaviour {
             xmls.Serialize(sw, Genes);
         }
     }
+    /// <summary>
+    /// Loads a DNA file from disk
+    /// </summary>
+    /// <param name="path">The path to the file to be loaded</param>
+    /// <returns></returns>
     public bool LoadDNAFile(string path)
     {
         FileInfo fi = new FileInfo(path);
@@ -74,6 +80,11 @@ public class DNAController : MonoBehaviour {
         }
         return true;
     }
+    /// <summary>
+    /// Loads a DNA file from the Resources folder
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     public bool LoadDNAResource(string path)
     {
         TextAsset geneFile=Resources.Load<TextAsset>(path);
@@ -90,5 +101,21 @@ public class DNAController : MonoBehaviour {
             g.UpdateBones();
         }
         return true;
+    }
+    /// <summary>
+    /// Gets a gene by name
+    /// </summary>
+    /// <param name="name">the name of the gene</param>
+    /// <returns>returns the gene if found, null if not</returns>
+    public Gene GetGene(string name)
+    {
+        for (int i = 0; i < Genes.Count; i++)
+        {
+            if (Genes[i].Name==name)
+            {
+                return Genes[i];
+            }
+        }
+        return null;
     }
 }

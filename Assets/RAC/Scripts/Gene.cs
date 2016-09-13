@@ -12,6 +12,9 @@ public class Gene
     public string Name { get; set; }
 
     private float _value = 1;
+    /// <summary>
+    /// The value of the gene
+    /// </summary>
     public float Value
     {
         get { return _value; }
@@ -26,12 +29,25 @@ public class Gene
     }
 
     public List<BoneAxisPair> Bones { get; set; }
-    public Gene()
+    /// <summary>
+    /// Creates a new gene with an empty name
+    /// </summary>
+    public Gene():this("")
     {
-        Name = "";
+    }
+    /// <summary>
+    /// Creates a new gene with a given name
+    /// </summary>
+    /// <param name="name">The name of the gene</param>
+    public Gene(string name)
+    {
+        Name = name;
         Bones = new List<BoneAxisPair>();
     }
-
+    /// <summary>
+    /// Called by the RAC system to update the bones with this gene.
+    /// </summary>
+    /// <returns>true: if successful</returns>
     public bool UpdateBones()
     {
         try

@@ -14,7 +14,9 @@ public class ComponentLoader : MonoBehaviour {
 
         Rebuild();
 	}
-
+    /// <summary>
+    /// Destroys all of the character components and recreates them all
+    /// </summary>
     public void Rebuild()
     {
         foreach (GameObject go in generatedChildren)
@@ -28,7 +30,10 @@ public class ComponentLoader : MonoBehaviour {
             skinMesh(go);
         }
     }
-
+    /// <summary>
+    /// Removes a character component
+    /// </summary>
+    /// <param name="part">The character component to remove</param>
     public void Remove(GameObject part)
     {
         for (int i = 0; i < Parts.Count; i++)
@@ -40,11 +45,19 @@ public class ComponentLoader : MonoBehaviour {
             }
         }
     }
+    /// <summary>
+    /// Removes a character component at a given index
+    /// </summary>
+    /// <param name="index">the index of the item to remove</param>
     public void RemoveAt(int index)
     {
         Parts.RemoveAt(index);
         generatedChildren.RemoveAt(index);
     }
+    /// <summary>
+    /// Adds a character component to a character
+    /// </summary>
+    /// <param name="part">The component to be added (a copy of this object will be added)</param>
     public void Add(GameObject part)
     {
         Parts.Add(part);
@@ -53,6 +66,11 @@ public class ComponentLoader : MonoBehaviour {
 
         skinMesh(go);
     }
+    /// <summary>
+    /// Adds a character component to the character at a given index
+    /// </summary>
+    /// <param name="index">The index to add the component</param>
+    /// <param name="part">The component to be added (a copy of this object will be added)</param>
     public void Insert(int index,GameObject part)
     {
         Parts.Insert(index,part);
