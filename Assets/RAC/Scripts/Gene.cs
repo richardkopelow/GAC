@@ -18,7 +18,10 @@ public class Gene
         set
         {
             _value = value;
-            UpdateBones();
+            if (Controller != null)
+            {
+                UpdateBones();
+            }
         }
     }
 

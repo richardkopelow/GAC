@@ -66,6 +66,7 @@ public class DNAController : MonoBehaviour {
             XmlSerializer xmls = new XmlSerializer(typeof(List<Gene>));
             Genes=(List<Gene>)xmls.Deserialize(sr);
         }
+
         foreach (Gene g in Genes)
         {
             g.Controller = this;
@@ -82,6 +83,12 @@ public class DNAController : MonoBehaviour {
         }
         XmlSerializer xmls = new XmlSerializer(typeof(List<Gene>));
         Genes = (List<Gene>)xmls.Deserialize(new StringReader(geneFile.text));
+
+        foreach (Gene g in Genes)
+        {
+            g.Controller = this;
+            g.UpdateBones();
+        }
         return true;
     }
 }
