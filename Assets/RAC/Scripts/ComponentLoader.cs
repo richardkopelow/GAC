@@ -40,6 +40,7 @@ public class ComponentLoader : MonoBehaviour {
         {
             if (Parts[i]==part||generatedChildren[i]==part)
             {
+                Destroy(generatedChildren[i]);
                 Parts.RemoveAt(i);
                 generatedChildren.RemoveAt(i);
             }
@@ -51,6 +52,7 @@ public class ComponentLoader : MonoBehaviour {
     /// <param name="index">the index of the item to remove</param>
     public void RemoveAt(int index)
     {
+        Destroy(generatedChildren[index]);
         Parts.RemoveAt(index);
         generatedChildren.RemoveAt(index);
     }
@@ -58,26 +60,28 @@ public class ComponentLoader : MonoBehaviour {
     /// Adds a character component to a character
     /// </summary>
     /// <param name="part">The component to be added (a copy of this object will be added)</param>
-    public void Add(GameObject part)
+    public GameObject Add(GameObject part)
     {
         Parts.Add(part);
         GameObject go = Instantiate(part);
         generatedChildren.Add(go);
 
         skinMesh(go);
+        return go;
     }
     /// <summary>
     /// Adds a character component to the character at a given index
     /// </summary>
     /// <param name="index">The index to add the component</param>
     /// <param name="part">The component to be added (a copy of this object will be added)</param>
-    public void Insert(int index,GameObject part)
+    public GameObject Insert(int index,GameObject part)
     {
         Parts.Insert(index,part);
         GameObject go = Instantiate(part);
         generatedChildren.Insert(index,go);
 
         skinMesh(go);
+        return go;
     }
     void skinMesh(GameObject go)
     {
