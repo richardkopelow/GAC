@@ -15,7 +15,7 @@ public class DNAEditor : EditorWindow
     private Vector2 scrollPos;
     private string filePath = "";
 
-    [MenuItem("Window/RAC/DNA Editor")]
+    [MenuItem("Window/GAC/DNA Editor")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(DNAEditor));
