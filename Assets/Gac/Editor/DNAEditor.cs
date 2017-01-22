@@ -26,6 +26,13 @@ public class DNAEditor : EditorWindow
         GUILayout.Label("File", EditorStyles.boldLabel);
         filePath = EditorGUILayout.TextField("File Path", filePath);
         GUILayout.BeginHorizontal();
+        if (GUILayout.Button("New"))
+        {
+            Genes = new List<Gene>();
+            geneBools = new List<AnimBool>();
+            bonesBools = new List<AnimBool>();
+            scrollPos = Vector2.zero;
+        }
         if (GUILayout.Button("Load"))
         {
             FileInfo fi = new FileInfo(filePath);

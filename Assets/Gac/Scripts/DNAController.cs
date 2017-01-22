@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
+[AddComponentMenu("GAC/DNAController")]
 public class DNAController : MonoBehaviour {
 
     Transform trans;

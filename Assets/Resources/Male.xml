@@ -2,7 +2,7 @@
 <ArrayOfGene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Gene>
     <Name>Height</Name>
-    <Value>0.7</Value>
+    <Value>1</Value>
     <Bones>
       <BoneAxisPair>
         <Name>hips</Name>
@@ -61,22 +61,6 @@
         </Mask>
       </BoneAxisPair>
       <BoneAxisPair>
-        <Name>chest</Name>
-        <Mask>
-          <x>1</x>
-          <y>0</y>
-          <z>0</z>
-        </Mask>
-      </BoneAxisPair>
-      <BoneAxisPair>
-        <Name>chest-1</Name>
-        <Mask>
-          <x>1</x>
-          <y>0</y>
-          <z>0</z>
-        </Mask>
-      </BoneAxisPair>
-      <BoneAxisPair>
         <Name>upper_arm_R</Name>
         <Mask>
           <x>1</x>
@@ -106,6 +90,98 @@
           <x>1</x>
           <y>0</y>
           <z>0</z>
+        </Mask>
+      </BoneAxisPair>
+    </Bones>
+  </Gene>
+  <Gene>
+    <Name>UpperBody</Name>
+    <Value>1</Value>
+    <Bones>
+      <BoneAxisPair>
+        <Name>forearm_R</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>forearm_L</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>upper_arm_R</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>upper_arm_L</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>chest</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>chest-1</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+    </Bones>
+  </Gene>
+  <Gene>
+    <Name>LowerBody</Name>
+    <Value>1</Value>
+    <Bones>
+      <BoneAxisPair>
+        <Name>shin_R</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>shin_L</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>thigh_R</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
+        </Mask>
+      </BoneAxisPair>
+      <BoneAxisPair>
+        <Name>thigh_L</Name>
+        <Mask>
+          <x>0</x>
+          <y>1</y>
+          <z>1</z>
         </Mask>
       </BoneAxisPair>
     </Bones>

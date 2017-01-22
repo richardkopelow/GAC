@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[AddComponentMenu("GAC/Component Loader")]
 public class ComponentLoader : MonoBehaviour {
     public string ArmatureName = "Armature";
     public List<GameObject> Parts;
